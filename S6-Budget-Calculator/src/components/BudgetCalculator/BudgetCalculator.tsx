@@ -1,45 +1,79 @@
 import { ServiceCard } from "../ServiceCard/ServiceCard";
 import "./BudgetCalculator.css";
 import { services } from "../../data/services";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+type Service = {
+	id: string;
+	title: string;
+	description: string;
+	price: number;
+	quantity?: number;
+	languages?: number;
+	selected: boolean;
+};
+
+//Converting services from an arrays of objects to an object
+const initialSelection = services.reduce((accumulator, service) => {
+	accumulator[service.id] = service;
+	return accumulator;
+}, {} as Record<string, Service>);
+
+const calculateTotal = (stateObj: Record<string, Service>): number => {
+	return Object.values(stateObj).reduce((total, service) => {
+		if (!service.selected) return total;
+
+		if (service.id === "web") {
+			const pages = service.quantity ?? 1;
+			const languages = service.languages ?? 1;
+			return total + service.price + (pages + languages) * 30;
+		}
+
+		return total + service.price;
+	}, 0);
+};
 
 export const BudgetCalculator = () => {
-	const [isChecked, setChecked] = useState(
-		new Array(services.length).fill(false)
+	const [selection, setSelection] = useState<{ [key: string]: Service }>(
+		initialSelection
 	);
 
-	const [totalBudget, setTotalBudget] = useState(0);
+	const [total, setTotal] = useState(0);
 
-	const handleCheckboxChange = (index: number) => {
-		const updated = [...isChecked];
-		updated[index] = !updated[index];
-		setChecked(updated);
-		const servicePrice = services[index].price;
-
-		if (updated[index]) {
-			setTotalBudget((prev) => prev + servicePrice);
-		} else {
-			setTotalBudget((prev) => prev - servicePrice);
-		}
+	const handleCheckboxChange = (id: string) => {
+		setSelection((prev) => ({
+			...prev,
+			[id]: {
+				...prev[id],
+				selected: !prev[id].selected,
+			},
+		}));
 	};
+
+	useEffect(() => {
+		setTotal(calculateTotal(selection));
+	}, [selection]);
+
+	// const handleWebServices = () => {};
 
 	return (
 		<>
 			<form>
-				{services.map((item, index) => (
+				{Object.values(selection).map((item) => (
 					<ServiceCard
-						key={item.title}
+						id={item.id}
+						key={item.id}
 						name={item.title}
 						title={item.title}
 						description={item.description}
 						price={item.price}
-						value={isChecked[index]}
-						onChange={() => handleCheckboxChange(index)}
+						selected={item.selected}
+						onChange={() => handleCheckboxChange(item.id)}
 					/>
 				))}
 			</form>
 
-			<h3>Total Budget: {totalBudget}</h3>
+			<h3>Total Budget: {total} </h3>
 		</>
 	);
 };

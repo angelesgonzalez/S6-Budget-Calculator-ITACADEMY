@@ -1,17 +1,10 @@
+import { IndividualService } from "./IndividualService";
+
 export const ServiceCounter = () => {
-  
-
-    
-
-
-
-
 	return (
 		<>
-			<button>-</button>
-			<label htmlFor="numberOfPages">Number of Pages</label>
-			<input type="number" name="numberOfPages" placeholder="1" required />
-			<button>+</button>
+			<IndividualService title="Num. Pages" id="pages" />
+			<IndividualService title="Num. Languages" id="languages" />
 		</>
 	);
 };
