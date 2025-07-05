@@ -3,13 +3,13 @@
     justify-content: space-between;
     align-items: center;
     background-color: white;
-    padding: 24px;
+    padding: 36px;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    max-width: 80vh;
     min-width: 80vh;
     min-height: 10vh;
     margin-top: 24px;
+
 }
 
 .service-card__info {
@@ -46,5 +46,11 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.9rem;
+
+}
+
+.service-card__checkbox input {
+    height: 20px;
+    width: 20px;
+
 }

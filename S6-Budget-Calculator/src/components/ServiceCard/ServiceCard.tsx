@@ -1,4 +1,5 @@
 import "./ServiceCard.css";
+import { ServiceCounter } from "./ServiceCounter";
 
 type Props = {
 	title: string;
@@ -41,6 +42,10 @@ export const ServiceCard = ({
 						/>
 						<label htmlFor={name}>Add</label>
 					</div>
+				</div>
+				<div className="service-card__counter">
+					{" "}
+					{title === "Web" && value && <ServiceCounter />}
 				</div>
 			</article>
 		</>
