@@ -19,12 +19,7 @@ export const ServiceCard = ({
 	selected,
 	id,
 	onChange,
-}: Props) =>
-
-
-(
-
-	
+}: Props) => (
 	<>
 		<article className="service-card">
 			<div className="service-card__info">
@@ -48,10 +43,13 @@ export const ServiceCard = ({
 					/>
 					<label htmlFor={name}>Add</label>
 				</div>
-			</div>
-			<div className="service-card__counter">
-				{" "}
-				{id === "web" && selected && <ServiceCounter />}
+
+				{/* Mostrar el contador solo si está seleccionado y es el servicio "web" */}
+				{id === "web" && selected && (
+					<div className="service-card__counter">
+						<ServiceCounter />
+					</div>
+				)}
 			</div>
 		</article>
 	</>

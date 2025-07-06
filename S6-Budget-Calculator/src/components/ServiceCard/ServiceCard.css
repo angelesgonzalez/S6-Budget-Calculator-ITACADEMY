@@ -28,8 +28,15 @@
 
 .service-card__right {
     display: flex;
-    align-items: center;
-    gap: 24px;
+    flex-direction: column;
+    /* importante */
+    align-items: flex-end;
+    /* para que todo esté alineado a la derecha */
+    gap: 0.5rem;
+}
+
+.service-card__counter {
+    margin-top: 0.5rem;
 }
 
 .service-card__price {

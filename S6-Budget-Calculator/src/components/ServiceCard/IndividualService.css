@@ -1,0 +1,50 @@
+.service-counter {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-family: sans-serif;
+}
+
+.service-counter label {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.counter-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.counter-btn {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.counter-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.counter-input {
+    width: 48px;
+    height: 32px;
+    text-align: center;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    appearance: none;
+    -moz-appearance: textfield;
+}
+
+.counter-input::-webkit-inner-spin-button,
+.counter-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
