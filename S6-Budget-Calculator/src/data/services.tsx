@@ -1,6 +1,6 @@
 export const services = [
 	{
-		id:'seo', 
+		id: "seo",
 		title: "SEO",
 		description: "Complete responsive website development",
 		price: 300,
@@ -8,7 +8,7 @@ export const services = [
 		selected: false,
 	},
 	{
-		id: 'ads',
+		id: "ads",
 		title: "Ads",
 		description: "Complete responsive website development",
 		price: 400,
@@ -16,7 +16,7 @@ export const services = [
 		selected: false,
 	},
 	{
-		id:'web',
+		id: "web",
 		title: "Web",
 		description: "Complete responsive website development",
 		price: 500,

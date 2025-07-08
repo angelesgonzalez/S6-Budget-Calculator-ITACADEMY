@@ -1,5 +1,6 @@
 import "./ServiceCard.css";
-import { ServiceCounter } from "./ServiceCounter";
+// import { ServiceCounter } from "./ServiceCounter";
+import { IndividualService } from "./IndividualService";
 
 type Props = {
 	title: string;
@@ -8,6 +9,9 @@ type Props = {
 	name: string;
 	selected: boolean;
 	id: string;
+	quantity?: number;
+	languages?: number;
+	onWebServiceChange: (id: string, key: string, newValue: number) => void;
 	onChange: () => void;
 };
 
@@ -18,6 +22,9 @@ export const ServiceCard = ({
 	name,
 	selected,
 	id,
+	quantity,
+	languages,
+	onWebServiceChange,
 	onChange,
 }: Props) => (
 	<>
@@ -47,7 +54,25 @@ export const ServiceCard = ({
 				{/* Mostrar el contador solo si está seleccionado y es el servicio "web" */}
 				{id === "web" && selected && (
 					<div className="service-card__counter">
-						<ServiceCounter />
+						{/* <ServiceCounter
+							onWebServiceChange={onWebServiceChange}
+							quantity={quantity || 1}
+							languages={languages || 1}
+						/> */}
+
+						<IndividualService
+							title="# Pages"
+							id="quantity"
+							quantity={quantity}
+							onWebServiceChange={onWebServiceChange}
+						/>
+
+						<IndividualService
+							title="# Languages"
+							id="languages"
+							languages={languages}
+							onWebServiceChange={onWebServiceChange}
+						/>
 					</div>
 				)}
 			</div>

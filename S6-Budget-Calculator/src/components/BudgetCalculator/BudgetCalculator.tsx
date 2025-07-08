@@ -8,7 +8,7 @@ type Service = {
 	title: string;
 	description: string;
 	price: number;
-	quantity?: number;
+	quantity: number;
 	languages?: number;
 	selected: boolean;
 };
@@ -24,8 +24,8 @@ const calculateTotal = (stateObj: Record<string, Service>): number => {
 		if (!service.selected) return total;
 
 		if (service.id === "web") {
-			const pages = service.quantity ?? 1;
-			const languages = service.languages ?? 1;
+			const pages = service.quantity;
+			const languages = service.languages ?? 0;
 			return total + service.price + (pages + languages) * 30;
 		}
 
@@ -54,23 +54,52 @@ export const BudgetCalculator = () => {
 		setTotal(calculateTotal(selection));
 	}, [selection]);
 
-	// const handleWebServices = () => {};
+	const handleWebServices = (id: string, key: string, newValue: number) => {
+		setSelection((prev) => ({
+			...prev,
+			[id]: {
+				...prev[id],
+				[key]: newValue,
+			},
+		}));
+	};
+
+	useEffect(() => {
+		console.log("🔍 Selection after change:", selection.web);
+	}, [selection]);
 
 	return (
 		<>
 			<form>
-				{Object.values(selection).map((item) => (
-					<ServiceCard
-						id={item.id}
-						key={item.id}
-						name={item.title}
-						title={item.title}
-						description={item.description}
-						price={item.price}
-						selected={item.selected}
-						onChange={() => handleCheckboxChange(item.id)}
-					/>
-				))}
+				{Object.values(selection).map((item) =>
+					item.id === "web" ? (
+						<ServiceCard
+							id={item.id}
+							key={item.id}
+							name={item.title}
+							title={item.title}
+							description={item.description}
+							price={item.price}
+							selected={item.selected}
+							onWebServiceChange={handleWebServices}
+							onChange={() => handleCheckboxChange(item.id)}
+							quantity={item.quantity}
+							languages={item.languages}
+						/>
+					) : (
+						<ServiceCard
+							id={item.id}
+							key={item.id}
+							name={item.title}
+							title={item.title}
+							description={item.description}
+							price={item.price}
+							selected={item.selected}
+							onWebServiceChange={handleWebServices}
+							onChange={() => handleCheckboxChange(item.id)}
+						/>
+					)
+				)}
 			</form>
 
 			<h3>Total Budget: {total} </h3>
