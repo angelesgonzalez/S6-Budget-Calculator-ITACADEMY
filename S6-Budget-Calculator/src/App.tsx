@@ -1,11 +1,11 @@
-import { BudgetCalculator } from "./components/BudgetCalculator/BudgetCalculator";
+import { Calculator } from "./components/calculator/Calculator";
 
 import "./App.css";
 
 function App() {
 	return (
 		<>
-			<BudgetCalculator></BudgetCalculator>
+			<Calculator></Calculator>
 		</>
 	);
 }

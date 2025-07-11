@@ -1,7 +1,7 @@
 export interface Service {
 	id: string;
 	name: string;
-	selected: boolean;
+	checked: boolean;
 	price: number;
 	description: string;
 }

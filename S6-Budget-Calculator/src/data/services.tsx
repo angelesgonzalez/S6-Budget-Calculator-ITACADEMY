@@ -1,27 +1,25 @@
-export const services = [
+import { type Service } from "../utils/types";
+
+export const services: Service[] = [
 	{
 		id: "seo",
-		title: "SEO",
+		name: "SEO",
 		description: "Complete responsive website development",
 		price: 300,
-		quantity: 1,
-		selected: false,
+		checked: false,
 	},
 	{
 		id: "ads",
-		title: "Ads",
+		name: "Ads",
 		description: "Complete responsive website development",
 		price: 400,
-		quantity: 1,
-		selected: false,
+		checked: false,
 	},
 	{
 		id: "web",
-		title: "Web",
+		name: "Web",
 		description: "Complete responsive website development",
 		price: 500,
-		quantity: 1,
-		languages: 1,
-		selected: false,
+		checked: false,
 	},
 ];

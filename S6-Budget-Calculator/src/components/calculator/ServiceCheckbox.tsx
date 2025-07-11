@@ -9,3 +9,28 @@
 // "SEO Campaign - 300€" ☑️
 // "Advertising - 400€" ☐
 // "Website - 500€" ☑️
+
+import { type Service } from "../../utils/types";
+
+type Props = {
+	service: Service;
+	onChange: () => void;
+};
+
+export const ServiceCheckbox = ({ service, onChange }: Props) => {
+	return (
+		<div className="service-card">
+			<label htmlFor={service.id}>{service.name}</label>
+			<div>{service.description}</div>
+			<span>{service.price}€</span>
+			<input
+				type="checkbox"
+				id={service.id}
+				name={service.name}
+				checked={service.checked}
+				onChange={onChange}
+			/>
+			<span>Add</span>
+		</div>
+	);
+};
