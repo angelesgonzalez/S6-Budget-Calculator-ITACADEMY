@@ -6,7 +6,7 @@ export interface Service {
 	description: string;
 }
 
-export interface WebCustomizer {
+export interface WebCustomizerSelection {
 	pages: number;
 	languages: number;
 }

@@ -9,9 +9,11 @@
 import { ServiceCheckbox } from "./ServiceCheckbox";
 import { services } from "../../data/services";
 import { useState } from "react";
+import { WebCustomizer } from "./WebCustomizer";
 
 export const Calculator = () => {
 	const [selection, setSelection] = useState(services);
+	const [webSelection, setWebSelection] = useState({ pages: 0, languages: 0 });
 
 	const handleCheckboxChange = (id: string) => {
 		setSelection((prevSelection) =>
@@ -21,6 +23,13 @@ export const Calculator = () => {
 		);
 	};
 
+	const handleWebCustomization = (field: string, newValue: number) => {
+		setWebSelection((prevSelection) => ({
+			...prevSelection,
+			[field]: newValue,
+		}));
+	};
+
 	return (
 		<>
 			{selection.map((service) => {
@@ -28,8 +37,12 @@ export const Calculator = () => {
 					<ServiceCheckbox
 						key={service.id}
 						service={service}
-						onChange={() => handleCheckboxChange(service.id)}
-					/>
+						onChange={() => handleCheckboxChange(service.id)}>
+						<WebCustomizer
+							webSelection={webSelection}
+							onWebCustomization={handleWebCustomization}
+						/>
+					</ServiceCheckbox>
 				);
 			})}
 		</>

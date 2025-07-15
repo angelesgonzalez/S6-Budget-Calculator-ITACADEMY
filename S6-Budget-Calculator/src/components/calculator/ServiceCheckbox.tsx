@@ -15,9 +15,10 @@ import { type Service } from "../../utils/types";
 type Props = {
 	service: Service;
 	onChange: () => void;
+	children: React.ReactNode;
 };
 
-export const ServiceCheckbox = ({ service, onChange }: Props) => {
+export const ServiceCheckbox = ({ service, onChange, children }: Props) => {
 	return (
 		<div className="service-card">
 			<label htmlFor={service.id}>{service.name}</label>
@@ -28,9 +29,9 @@ export const ServiceCheckbox = ({ service, onChange }: Props) => {
 				id={service.id}
 				name={service.name}
 				checked={service.checked}
-				onChange={onChange}
-			/>
+				onChange={onChange}></input>
 			<span>Add</span>
+			{service.id === "web" && service.checked && children}
 		</div>
 	);
 };
