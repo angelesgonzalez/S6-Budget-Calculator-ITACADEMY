@@ -5,15 +5,20 @@
 // Responsabilidad: Manejar estados principales y coordinar sub-componentes
 // Estados que maneja: services, pages, languages, isAnnual
 // Contiene: ServiceCheckbox x3, WebCustomizer, PriceDisplay
-
+import { useMemo } from "react";
 import { ServiceCheckbox } from "./ServiceCheckbox";
 import { services } from "../../data/services";
 import { useState } from "react";
 import { WebCustomizer } from "./WebCustomizer";
+import { calculateTotal } from "../../utils/helpers";
 
 export const Calculator = () => {
 	const [selection, setSelection] = useState(services);
 	const [webSelection, setWebSelection] = useState({ pages: 0, languages: 0 });
+	const total = useMemo(
+		() => calculateTotal(selection, webSelection),
+		[selection, webSelection]
+	);
 
 	const handleCheckboxChange = (id: string) => {
 		setSelection((prevSelection) =>
@@ -45,6 +50,8 @@ export const Calculator = () => {
 					</ServiceCheckbox>
 				);
 			})}
+
+			<h2>Total: {total}</h2>
 		</>
 	);
 };
